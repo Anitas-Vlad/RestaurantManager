@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using RestaurantManagement.Models;
 using RestaurantManagement.Models.Requests;
 using RestaurantManagement.Services.Interfaces;
@@ -34,13 +34,23 @@ public class TableService : ITableService
     public async Task<Table> AddToTable(AddDishToTableRequest request)
     {
         var table = await QueryTableById(request.TableId);
-        var newTableDish = await CreateTableDish(request);
-
-        // var price = request.Quantity * newTableDish.Price; // THIS
-        table.TotalPrice += request.Quantity * newTableDish.Price; // THIS
+        var tableDishFromDb = table.TableDishes.SingleOrDefault(tableDish => tableDish.DishId == request.DishId);
+            
+        if (tableDishFromDb == null)
+        {
+            var newTableDish = await CreateTableDish(request);
+            
+            table.TotalPrice += request.Quantity * newTableDish.Price; // THIS
         
-        table.TableDishes.Add(newTableDish);
+            table.TableDishes.Add(newTableDish);
+            await _context.SaveChangesAsync();
+            
+            return table;
+        }
 
+        tableDishFromDb.Quantity += request.Quantity;
+        table.TotalPrice += request.Quantity * tableDishFromDb.Price;
+        
         await _context.SaveChangesAsync();
         return table;
     }

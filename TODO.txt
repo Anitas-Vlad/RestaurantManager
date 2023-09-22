@@ -1,1 +1,3 @@
-AddToTable ---
+AddToTable 
+
+Create Method for when the tableDish already exists for that table.
