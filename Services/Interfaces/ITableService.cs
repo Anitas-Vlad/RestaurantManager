@@ -6,7 +6,7 @@ namespace RestaurantManagement.Services.Interfaces;
 
 public interface ITableService
 {
-    void ClearTable(int tableId);
+    Task<Table> ClearTable(int tableId);
     Task<List<Table>> QueryAllTables();
     Task<Table> AddToTable(AddDishToTableRequest request);
     Task<Table> QueryTableById(int tableId);

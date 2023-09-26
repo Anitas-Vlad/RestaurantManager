@@ -10,12 +10,10 @@ namespace RestaurantManagement.Controllers;
 public class TablesController : ControllerBase
 {
     private readonly ITableService _tableService;
-    private readonly IDishService _dishService;
     
-    public TablesController(ITableService tableService, IDishService dishService)
+    public TablesController(ITableService tableService)
     {
         _tableService = tableService;
-        _dishService = dishService;
     }
 
     [HttpGet]
@@ -30,4 +28,9 @@ public class TablesController : ControllerBase
     [HttpPatch]
     public async Task AddDishToTable(AddDishToTableRequest request) 
         => await _tableService.AddToTable(request);
+
+    [HttpPatch]
+    [Route("clear-table-{tableId}")]
+    public async Task<ActionResult<Table>> ClearTable(int tableId)
+        => await _tableService.ClearTable(tableId);
 }

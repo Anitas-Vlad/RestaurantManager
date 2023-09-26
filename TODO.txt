@@ -1,3 +1,40 @@
-AddToTable 
+- DONE - AddToTable 
 
-Create Method for when the tableDish already exists for that table.
+- DONE - Create Method for when the tableDish already exists for that table.
+
+- DONE - Set Availability of table for empty/not empty
+
+Add Restaurant Account. 
+The restaurant Account should have : 
+
+-logged purchases (each created on ClearTable) 
+
+Purchases have : 
+* LocalDate, 
+* Sold dishes, 
+* Total sales for each product, 
+
+-Statistics - Available to see a top of products selling --- orderBy(product => product.Quantity);
+-Total Money earned.
+
+
+
+
+
+public List<PurchasedDish> CreatePurchasedDishes(IEnumerable<TableDish> tableDishes)
+    {
+        var result = new List<PurchasedDish>();
+
+        foreach (var tableDish in tableDishes)
+        {
+            var tableDishFromDb = ta 
+            if (_context.PurchasedDishes.SingleOrDefault(dish => dish.Name == tableDish.Name) == null)
+            {
+                result.Add();
+            }
+        }
+        
+        return tableDishes.Select(dish =>
+                new PurchasedDish { Name = dish.Name, Quantity = dish.Quantity })
+            .ToList();
+    }

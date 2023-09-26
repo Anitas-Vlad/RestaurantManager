@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestaurantManagement.Models;
 
-namespace RestaurantManagement;
+namespace RestaurantManagement.Context;
 
 public class RestaurantManagementContext : DbContext
 {
@@ -17,8 +17,10 @@ public class RestaurantManagementContext : DbContext
     public DbSet<Dish> Dishes { get; set; } = default!;
     public DbSet<Table> Tables { get; set; } = default!;
     public DbSet<TableDish> TableDishes { get; set; } = default!;
+    public DbSet<Purchase> Purchases { get; set; } = default!;
+    public DbSet<PurchasedDish> PurchasedDishes { get; set; } = default!;
 
-    public static class ModelBuilderExtensions
+    private static class ModelBuilderExtensions
     {
         public static void Seed(ModelBuilder modelBuilder)
         {
