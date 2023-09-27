@@ -9,9 +9,13 @@ namespace RestaurantManagement.Controllers;
 public class AccountController :ControllerBase
 {
     private readonly IAccountService _accountService;
-    
-    public AccountController(IAccountService accountService) 
-        => _accountService = accountService;
+    private readonly IDishSellingCountMapper _dishSellingCountMapper;
+
+    public AccountController(IAccountService accountService, IDishSellingCountMapper dishSellingCountMapper)
+    {
+        _accountService = accountService;
+        _dishSellingCountMapper = dishSellingCountMapper;
+    }
 
     [HttpGet]
     [Route("TotalEarnings")]
@@ -22,4 +26,9 @@ public class AccountController :ControllerBase
     [Route("Purchases")]
     public async Task<ActionResult<List<Purchase>>> GetAllPurchases() 
         => await _accountService.GetAllPurchases();
+
+    [HttpGet]
+    [Route("OrderedDishSellingCounts")]
+    public async Task<ActionResult<List<DishSellingCount>>> GetOrderedDishSellingCounts()
+        => await _accountService.GetOrderedDishSellingCounts();
 }

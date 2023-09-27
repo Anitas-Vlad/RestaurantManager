@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantManagement.Context;
+using RestaurantManagement.Models;
 using RestaurantManagement.Services;
 using RestaurantManagement.Services.Interfaces;
 
@@ -13,6 +14,7 @@ builder.Services.AddScoped<IDishService, DishService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IPurchaseService, PurchaseService>();
 builder.Services.AddScoped<ITableDishService, TableDishService>();
+builder.Services.AddScoped<IDIshSellingCountService, DishSellingCountService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

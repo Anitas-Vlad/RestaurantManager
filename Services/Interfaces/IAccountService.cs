@@ -4,7 +4,8 @@ namespace RestaurantManagement.Services.Interfaces;
 
 public interface IAccountService
 {
-    void CreatePurchase(Table table);
+    Task CreatePurchase(Table table);
     Task<double> GetTotalEarnings();
     Task<List<Purchase>> GetAllPurchases();
+    Task<List<DishSellingCount>> GetOrderedDishSellingCounts();
 }

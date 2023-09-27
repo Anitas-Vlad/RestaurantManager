@@ -12,8 +12,8 @@ using RestaurantManagement.Context;
 namespace RestaurantManagement.Migrations
 {
     [DbContext(typeof(RestaurantManagementContext))]
-    [Migration("20230926174443_AddedPurchasedDishes")]
-    partial class AddedPurchasedDishes
+    [Migration("20230927114854_AddedDishSellingCounts")]
+    partial class AddedDishSellingCounts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,6 +77,29 @@ namespace RestaurantManagement.Migrations
                         });
                 });
 
+            modelBuilder.Entity("RestaurantManagement.Models.DishSellingCount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DishId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DishSellingCounts");
+                });
+
             modelBuilder.Entity("RestaurantManagement.Models.Purchase", b =>
                 {
                     b.Property<int>("Id")
@@ -103,6 +126,9 @@ namespace RestaurantManagement.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DishId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

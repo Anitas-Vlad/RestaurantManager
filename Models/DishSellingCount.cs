@@ -2,7 +2,7 @@
 
 namespace RestaurantManagement.Models;
 
-public class PurchasedDish
+public class DishSellingCount
 {
     public int Id { get; set; }
     [Required] public string Name { get; set; }

@@ -4,8 +4,8 @@
 
 - DONE - Set Availability of table for empty/not empty
 
-Add Restaurant Account. 
-The restaurant Account should have : 
+-DONE - Add Restaurant Account. 
+-DONE - The restaurant Account should have : 
 
 -logged purchases (each created on ClearTable) 
 
@@ -14,10 +14,13 @@ Purchases have :
 * Sold dishes, 
 * Total sales for each product, 
 
+-DONE - -Total Money earned.
+
+-DONE - -If the dish was already purchased, only add to it's Quantity. --- purchasedDish.Quantity += new.Quantity
+
 -Statistics - Available to see a top of products selling --- orderBy(product => product.Quantity);
--Total Money earned.
 
-
+-Seed the database with DishSellingCounts for each Dish.
 
 
 

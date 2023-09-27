@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RestaurantManagement.Migrations
 {
     /// <inheritdoc />
-    public partial class AddedPurchasedDishes : Migration
+    public partial class AddedDishSellingCounts : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,6 +25,21 @@ namespace RestaurantManagement.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Dishes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DishSellingCounts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    DishId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DishSellingCounts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,6 +79,7 @@ namespace RestaurantManagement.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    DishId = table.Column<int>(type: "int", nullable: false),
                     PurchaseId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -139,6 +155,9 @@ namespace RestaurantManagement.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Dishes");
+
+            migrationBuilder.DropTable(
+                name: "DishSellingCounts");
 
             migrationBuilder.DropTable(
                 name: "PurchasedDishes");
