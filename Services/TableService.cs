@@ -2,6 +2,7 @@
 using RestaurantManagement.Context;
 using RestaurantManagement.Models;
 using RestaurantManagement.Models.Requests;
+using RestaurantManagement.Models.Responses;
 using RestaurantManagement.Services.Interfaces;
 
 namespace RestaurantManagement.Services;
@@ -28,7 +29,7 @@ public class TableService : ITableService
         if (await CheckIfTableIsAvailable(tableId))
             throw new ArgumentException("Table is already empty.");
 
-        _accountService.CreatePurchase(table);
+        await _accountService.CreatePurchase(table);
 
         table.TableDishes = new List<TableDish>();
         table.TotalPrice = 0;

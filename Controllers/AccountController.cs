@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestaurantManagement.Models;
+using RestaurantManagement.Models.Responses;
 using RestaurantManagement.Services.Interfaces;
 
 namespace RestaurantManagement.Controllers;
@@ -9,12 +10,10 @@ namespace RestaurantManagement.Controllers;
 public class AccountController :ControllerBase
 {
     private readonly IAccountService _accountService;
-    private readonly IDishSellingCountMapper _dishSellingCountMapper;
 
-    public AccountController(IAccountService accountService, IDishSellingCountMapper dishSellingCountMapper)
+    public AccountController(IAccountService accountService)
     {
         _accountService = accountService;
-        _dishSellingCountMapper = dishSellingCountMapper;
     }
 
     [HttpGet]
@@ -24,11 +23,11 @@ public class AccountController :ControllerBase
 
     [HttpGet]
     [Route("Purchases")]
-    public async Task<ActionResult<List<Purchase>>> GetAllPurchases() 
+    public async Task<ActionResult<List<PurchaseResponse>>> GetAllPurchases() 
         => await _accountService.GetAllPurchases();
 
     [HttpGet]
     [Route("OrderedDishSellingCounts")]
-    public async Task<ActionResult<List<DishSellingCount>>> GetOrderedDishSellingCounts()
+    public async Task<ActionResult<List<DishSellingCountResponse>>> GetOrderedDishSellingCounts()
         => await _accountService.GetOrderedDishSellingCounts();
 }

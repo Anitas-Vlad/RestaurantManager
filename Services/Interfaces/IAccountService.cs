@@ -1,4 +1,5 @@
 ﻿using RestaurantManagement.Models;
+using RestaurantManagement.Models.Responses;
 
 namespace RestaurantManagement.Services.Interfaces;
 
@@ -6,6 +7,6 @@ public interface IAccountService
 {
     Task CreatePurchase(Table table);
     Task<double> GetTotalEarnings();
-    Task<List<Purchase>> GetAllPurchases();
-    Task<List<DishSellingCount>> GetOrderedDishSellingCounts();
+    Task<List<PurchaseResponse>> GetAllPurchases();
+    Task<List<DishSellingCountResponse>> GetOrderedDishSellingCounts();
 }

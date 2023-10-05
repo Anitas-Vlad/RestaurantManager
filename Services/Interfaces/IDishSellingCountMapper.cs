@@ -6,4 +6,5 @@ namespace RestaurantManagement.Services.Interfaces;
 public interface IDishSellingCountMapper
 {
     DishSellingCountResponse Map(DishSellingCount dishSellingCount);
+    List<DishSellingCountResponse> Map(List<DishSellingCount> dishSellingCounts);
 }
