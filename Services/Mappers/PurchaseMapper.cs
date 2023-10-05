@@ -4,19 +4,19 @@ using RestaurantManagement.Services.Interfaces;
 
 namespace RestaurantManagement.Services.Mappers;
 
-public class PurchasesMapper :IPurchasesMapper
+public class PurchaseMapper :IPurchaseMapper
 { 
-    public IPurchasedDishesMapper _purchasedDishesMapper;
+    public IPurchasedDishMapper _purchasedDishMapper;
 
-    public PurchasesMapper(IPurchasedDishesMapper purchasedDishesMapper)
+    public PurchaseMapper(IPurchasedDishMapper purchasedDishMapper)
     {
-        _purchasedDishesMapper = purchasedDishesMapper;
+        _purchasedDishMapper = purchasedDishMapper;
     }
 
     public PurchaseResponse Map(Purchase purchase)
         => new()
         {
-            PurchasedDishes = _purchasedDishesMapper.Map(purchase.PurchasedDishes),
+            PurchasedDishes = _purchasedDishMapper.Map(purchase.PurchasedDishes),
             TimeOfPurchase = purchase.TimeOfPurchase.ToString(),
             Total = purchase.Total
         };

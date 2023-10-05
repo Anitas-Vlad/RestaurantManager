@@ -12,17 +12,17 @@ public class AccountService : IAccountService
     private readonly IPurchaseService _purchaseService;
     private readonly IDIshSellingCountService _dishSellingCountService;
     private readonly IDishSellingCountMapper _dishSellingCountMapper;
-    private readonly IPurchasesMapper _purchasesMapper;
+    private readonly IPurchaseMapper _purchaseMapper;
 
     public AccountService(RestaurantManagementContext context, IPurchaseService purchaseService, 
         IDIshSellingCountService dishSellingCountService, IDishSellingCountMapper dishSellingCountMapper,
-        IPurchasesMapper purchasesMapper)
+        IPurchaseMapper purchaseMapper)
     {
         _context = context;
         _purchaseService = purchaseService;
         _dishSellingCountService = dishSellingCountService;
         _dishSellingCountMapper = dishSellingCountMapper;
-        _purchasesMapper = purchasesMapper;
+        _purchaseMapper = purchaseMapper;
     }
 
     public async Task CreatePurchase(Table table)
@@ -43,7 +43,7 @@ public class AccountService : IAccountService
         Math.Round((await _context.Purchases.Select(purchase => purchase.Total).ToListAsync()).Sum(), 2);
 
     public async Task<List<PurchaseResponse>> GetAllPurchases() => 
-        _purchasesMapper.Map(await _context.Purchases.Include(p => p.PurchasedDishes).ToListAsync());
+        _purchaseMapper.Map(await _context.Purchases.Include(p => p.PurchasedDishes).ToListAsync());
 
     public async Task<List<DishSellingCountResponse>> GetOrderedDishSellingCounts() =>
         _dishSellingCountMapper.Map(await _dishSellingCountService.OrderDishSellingCounts());

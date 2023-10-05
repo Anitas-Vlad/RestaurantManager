@@ -4,7 +4,7 @@ using RestaurantManagement.Services.Interfaces;
 
 namespace RestaurantManagement.Services.Mappers;
 
-public class DishSellingCountsMapper : IDishSellingCountMapper
+public class DishSellingCountMapper : IDishSellingCountMapper
 {
     public DishSellingCountResponse Map(DishSellingCount dishSellingCount)
         => new()

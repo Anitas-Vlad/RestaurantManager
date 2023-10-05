@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using RestaurantManagement.Models;
+﻿using RestaurantManagement.Models;
 using RestaurantManagement.Models.Requests;
 
 namespace RestaurantManagement.Services.Interfaces;
